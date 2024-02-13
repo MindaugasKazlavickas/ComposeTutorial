@@ -28,7 +28,11 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Greeting(msg: Message) {
-    Row(modifier = Modifier.padding(all = 8.dp)) {
+    Row(modifier = Modifier
+        .padding(all = 8.dp)
+        .padding(end =8.dp)
+
+    ) {
         Image(
             painter = painterResource(R.drawable.icon),
             contentDescription = null,
