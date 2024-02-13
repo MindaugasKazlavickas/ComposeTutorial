@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -37,7 +38,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
     packaging {
         resources {
@@ -47,6 +48,9 @@ android {
 }
 
 dependencies {
+    ksp("androidx.room:room-compiler:2.6.1")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
+    ksp ("com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.13")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -62,25 +66,44 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    val nav_version = "2.7.6"
+    val navVersion = "2.7.6"
 
     // Java language implementation
-    implementation("androidx.navigation:navigation-fragment:$nav_version")
-    implementation("androidx.navigation:navigation-ui:$nav_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
     // Kotlin
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
     // Feature module Support
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$navVersion")
 
     // Testing Navigation
-    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+    androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
 
     // Jetpack Compose Integration
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin Symbol Processing (KSP)
+    ksp("androidx.room:room-compiler:$room_version")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
+
+    // optional - RxJava2 support for Room
+    implementation("androidx.room:room-rxjava2:$room_version")
+
+    // optional - RxJava3 support for Room
+    implementation("androidx.room:room-rxjava3:$room_version")
+
+    implementation ("androidx.compose.runtime:runtime-livedata:1.6.0")
 }
