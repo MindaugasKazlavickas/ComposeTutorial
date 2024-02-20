@@ -1,17 +1,38 @@
 package com.example.composetutorial
 
-import android.app.Activity
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.Service
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
+import android.util.Log
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.composetutorial.ui.theme.ComposeTutorialTheme
+import kotlinx.coroutines.*
+import android.app.*
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import androidx.core.app.ActivityCompat
+import android.content.*
+import android.hardware.*
+import android.os.*
+import androidx.activity.*
+import androidx.core.app.*
+import android.content.BroadcastReceiver
+import android.widget.TextView
+import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,26 +42,13 @@ class MainActivity : ComponentActivity() {
                 Navigation()
             }
         }
+
     }
 }
-data class Message(val author: String, val body: String)
-
 @Preview
 @Composable
 fun ConversationPreview() {
     ComposeTutorialTheme {
         Navigation()
-    }
-}
-@Composable
-fun Navigation() {
-    val navController = rememberNavController()
-    NavHost(navController, startDestination = "conversation") {
-        composable("conversation") { Conversation(SampleData.conversationSample, onNavigateToProfile = { navController.navigate("profile") { popUpTo ("profile") {inclusive = true} } }) }
-        composable("profile") {
-            Profile(
-                onNavigateToConversation = {
-                    navController.navigate("conversation")})
-        }
     }
 }
