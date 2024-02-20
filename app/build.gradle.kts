@@ -48,6 +48,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:protolite-well-known-types:18.0.0")
     ksp("androidx.room:room-compiler:2.6.1")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
     ksp ("com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.13")
@@ -106,4 +107,6 @@ dependencies {
     implementation("androidx.room:room-rxjava3:$room_version")
 
     implementation ("androidx.compose.runtime:runtime-livedata:1.6.0")
+
+    //implementation("androidx.core:core-ktx:2.2.0")
 }
