@@ -1,0 +1,102 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:width="100dp"
+            android:height="100dp"
+            android:viewportWidth="150"
+            android:viewportHeight="150">
+
+            <!-- Stick Path -->
+            <path
+                android:name="square"
+                android:pathData="M10,10 L140,10 L140,140 L10,140 Z"
+                android:strokeWidth="2"
+                android:strokeColor="#000000"
+                android:fillColor="#FFFFFF"/>
+            <path
+                android:name="stick"
+                android:pathData="M10,10 L10,140"
+                android:strokeWidth="8"
+                android:strokeColor="#3c1e9e"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"/>
+
+            <!-- Second Stick Path -->
+            <path
+                android:name="second_stick"
+                android:pathData="M10,140 L140,140"
+                android:strokeWidth="8"
+                android:strokeColor="#FF2211"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"/>
+
+        </vector>
+    </aapt:attr>
+    <target android:name="square">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="4000"
+                android:propertyName="fillColor"
+                android:valueFrom="#FFFFFF"
+                android:valueTo="#b1faf1"
+                android:valueType="colorType"/>
+        </aapt:attr>
+    </target>
+    <target android:name="stick">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:duration="500"
+                    android:propertyName="pathData"
+                    android:valueFrom="M10,10 L10,140"
+                    android:valueTo="M10,10 L140,10"
+                    android:valueType="pathType"/>
+
+                <objectAnimator
+                    android:duration="500"
+                    android:propertyName="pathData"
+                    android:valueFrom="M10,10 L140,10"
+                    android:valueTo="M10,10 L10,140"
+                    android:valueType="pathType"
+                    android:startOffset="1000"/>
+                <objectAnimator
+                    android:duration="500"
+                    android:propertyName="pathData"
+                    android:valueFrom="M10,10 L10,140"
+                    android:valueTo="M10,10 L140,10"
+                    android:valueType="pathType"
+                    android:startOffset="2000"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="second_stick">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:duration="500"
+                    android:propertyName="pathData"
+                    android:valueFrom="M140,140 L10,140"
+                    android:valueTo="M140,140 L140,10"
+                    android:valueType="pathType"
+                    android:startOffset="500"/>
+
+                <objectAnimator
+                    android:duration="500"
+                    android:propertyName="pathData"
+                    android:valueFrom="M140,140 L140,10"
+                    android:valueTo="M140,140 L10,140"
+                    android:valueType="pathType"
+                    android:startOffset="1500"/>
+                <objectAnimator
+                    android:duration="500"
+                    android:propertyName="pathData"
+                    android:valueFrom="M140,140 L10,140"
+                    android:valueTo="M140,140 L140,10"
+                    android:valueType="pathType"
+                    android:startOffset="2500"/>
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>
+

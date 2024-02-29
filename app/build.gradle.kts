@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -36,6 +37,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.2"
@@ -46,9 +48,26 @@ android {
         }
     }
 }
+secrets {
+    // Optionally specify a different file name containing your secrets.
+    // The plugin defaults to "local.properties"
+    propertiesFileName = "secrets.properties"
+
+    // A properties file containing default secret values. This file can be
+    // checked in version control.
+    defaultPropertiesFileName = "local.defaults.properties"
+
+    // Configure which keys should be ignored by the plugin by providing regular expressions.
+    // "sdk.dir" is ignored by default.
+    ignoreList.add("keyToIgnore") // Ignore the key "keyToIgnore"
+    ignoreList.add("sdk.*")       // Ignore all keys matching the regexp "sdk.*"
+}
 
 dependencies {
     implementation("com.google.firebase:protolite-well-known-types:18.0.0")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     ksp("androidx.room:room-compiler:2.6.1")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
     ksp ("com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.13")
@@ -107,6 +126,25 @@ dependencies {
     implementation("androidx.room:room-rxjava3:$room_version")
 
     implementation ("androidx.compose.runtime:runtime-livedata:1.6.0")
-
+    implementation ("androidx.compose.ui:ui:1.6.2")
+    implementation ("androidx.compose.material:material:1.6.2")
     //implementation("androidx.core:core-ktx:2.2.0")
+
+    implementation ("androidx.camera:camera-core:1.3.1")
+
+    // CameraX Camera2 extension library
+    implementation ("androidx.camera:camera-camera2:1.3.1")
+
+    // CameraX Lifecycle library
+    implementation ("androidx.camera:camera-lifecycle:1.3.1")
+
+    // CameraX View library
+    implementation ("androidx.camera:camera-view:1.3.1")
+
+    // CameraX Extensions (Optional, only if you need specific extensions like Portrait, Night, etc.)
+    implementation ("androidx.camera:camera-extensions:1.3.1")
+
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }
